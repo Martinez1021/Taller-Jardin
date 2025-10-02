@@ -1,0 +1,5 @@
+Redes,Redes,AD,AD,SX,SX
+SI,SI,ED,ED,Redes,Guardia
+AD,AD,SI,SI,SX,Guardia
+Redes,Redes,ED,AD,SX,SI
+Guardia,ED,SI,SX,Redes,Guardia

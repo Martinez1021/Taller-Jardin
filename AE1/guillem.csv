@@ -1,0 +1,5 @@
+DI,DI,SGE,SGE,ING,Guardia
+MAT,MAT,SGE,SGE,DI,Guardia
+FOL,FOL,SGE,Guardia,DI,DI
+ECO,SGE,SGE,HIS,HIS,Guardia
+DI,Guardia,LCL,SGE,LCL,DI
