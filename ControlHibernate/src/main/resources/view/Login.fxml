@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.empresa.fichador.controller.LoginController"
+           style="-fx-background-color: #f0f0f0;">
+
+    <center>
+        <VBox alignment="CENTER" spacing="15" style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-padding: 30; -fx-max-width: 400;">
+
+            <!-- Título -->
+            <Label text="Control de Presencia" styleClass="label-title" style="-fx-font-size: 20px;"/>
+            <Label text="Iniciar Sesión" style="-fx-font-size: 14px; -fx-text-fill: #666666;"/>
+
+            <Separator prefWidth="350"/>
+
+            <!-- Campos de formulario -->
+            <VBox spacing="10" style="-fx-padding: 10 0;">
+                <Label text="Usuario / Nº Tarjeta:"/>
+                <TextField fx:id="txtUsuario" promptText="Introduce usuario o tarjeta" prefWidth="350"/>
+
+                <Label text="Contraseña / PIN:"/>
+                <PasswordField fx:id="txtPassword" promptText="Introduce contraseña o PIN" prefWidth="350"/>
+            </VBox>
+
+            <!-- Botón login -->
+            <Button fx:id="btnLogin" text="Entrar" onAction="#handleLogin"
+                    prefWidth="350" styleClass="btn-primary" style="-fx-font-size: 14px; -fx-padding: 10;"/>
+
+            <!-- Error -->
+            <Label fx:id="lblError" text="" style="-fx-text-fill: red;" wrapText="true" maxWidth="350"/>
+
+            <Separator prefWidth="350"/>
+
+            <!-- Info de usuario demo -->
+            <VBox spacing="5" style="-fx-padding: 10 0;">
+                <Label text="Usuarios de prueba:" style="-fx-font-size: 11px; -fx-text-fill: #666666;"/>
+                <Label text="Admin: admin / admin123" style="-fx-font-size: 11px; -fx-text-fill: #666666;"/>
+                <Label text="Trabajador: 1001 / 1234" style="-fx-font-size: 11px; -fx-text-fill: #666666;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
+

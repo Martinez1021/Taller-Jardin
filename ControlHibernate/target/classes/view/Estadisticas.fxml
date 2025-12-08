@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.empresa.fichador.controller.EstadisticasController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: #f1f5f9;">
+
+    <VBox spacing="25" style="-fx-background-color: #f1f5f9;">
+        <padding>
+            <Insets top="30" right="35" bottom="30" left="35"/>
+        </padding>
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="📊" style="-fx-font-size: 32px;"/>
+            <VBox spacing="3">
+                <Label text="Estadísticas de Asistencia" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Análisis de puntualidad y horas trabajadas" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 Actualizar" onAction="#handleActualizar" styleClass="btn-primary"/>
+        </HBox>
+
+        <!-- Tarjetas -->
+        <HBox spacing="20">
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="👥 Total Empleados" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblTotalEmpleados" text="0" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #6366f1;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="✅ Puntuales Hoy" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblPuntuales" text="0" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #10b981;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="⏰ Llegadas Tarde" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblTarde" text="0" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #f59e0b;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="📈 Media Horas/Día" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblMediaHoras" text="0h" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #3b82f6;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Gráficos -->
+        <HBox spacing="20">
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="15">
+                <Label text="⏰ Puntualidad del Día" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                <BarChart fx:id="barChartPuntualidad" prefHeight="280" legendVisible="false">
+                    <xAxis><CategoryAxis fx:id="xAxisBar"/></xAxis>
+                    <yAxis><NumberAxis fx:id="yAxisBar"/></yAxis>
+                </BarChart>
+            </VBox>
+            <VBox prefWidth="350" styleClass="card" spacing="15">
+                <Label text="🎯 Distribución" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                <PieChart fx:id="pieChartPorcentajes" prefHeight="280" legendSide="BOTTOM"/>
+            </VBox>
+        </HBox>
+
+        <!-- Gráfico de líneas -->
+        <VBox styleClass="card" spacing="15">
+            <Label text="📉 Media de Horas (Últimos 7 Días)" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+            <LineChart fx:id="lineChartHoras" prefHeight="280" legendVisible="false">
+                <xAxis><CategoryAxis fx:id="xAxisLine"/></xAxis>
+                <yAxis><NumberAxis fx:id="yAxisLine"/></yAxis>
+            </LineChart>
+        </VBox>
+
+        <!-- Tabla -->
+        <VBox styleClass="card" spacing="15">
+            <Label text="📋 Detalle por Empleado - Hoy" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+            <TableView fx:id="tableDetalle" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colEmpleado" text="👤 Empleado" prefWidth="200"/>
+                    <TableColumn fx:id="colDepartamento" text="🏢 Depto." prefWidth="150"/>
+                    <TableColumn fx:id="colEntrada" text="⬇️ Entrada" prefWidth="120"/>
+                    <TableColumn fx:id="colSalida" text="⬆️ Salida" prefWidth="120"/>
+                    <TableColumn fx:id="colHoras" text="⏱️ Horas" prefWidth="100"/>
+                    <TableColumn fx:id="colEstado" text="📊 Estado" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</ScrollPane>
+

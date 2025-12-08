@@ -1,0 +1,17 @@
+com\empresa\fichador\model\Fichaje.class
+com\empresa\fichador\service\FichajeService.class
+com\empresa\fichador\model\ResumenDiario.class
+com\empresa\fichador\service\EstadisticasService.class
+com\empresa\fichador\controller\FicharController.class
+com\empresa\fichador\dao\TrabajadorDAO.class
+com\empresa\fichador\controller\GestionController.class
+com\empresa\fichador\model\Fichaje$TipoFichaje.class
+com\empresa\fichador\dao\GenericDAO.class
+com\empresa\fichador\model\Trabajador.class
+com\empresa\fichador\controller\MenuController.class
+com\empresa\fichador\util\HibernateUtil.class
+com\empresa\fichador\controller\EstadisticasController.class
+com\empresa\fichador\MainApp.class
+com\empresa\fichador\dao\FichajeDAO.class
+com\empresa\fichador\util\WeatherAPI.class
+com\empresa\fichador\util\TimeCalculator.class
