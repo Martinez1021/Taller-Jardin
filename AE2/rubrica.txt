@@ -1,0 +1,3 @@
+Primera pregunta;100-Cumple todos los requisitos;66-Cumple la mayoría de requisitos;33-Cumple algunos requisitos;0-No cumple requisitos
+Segunda pregunta;100-Excelente implementación;50-Implementación básica;0-No implementado
+Tercera pregunta;100-Código limpio y documentado;66-Código funcional;33-Código con errores;0-No entregado

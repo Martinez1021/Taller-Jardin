@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.empresa.fichador.controller.MenuAdminController"
+            fx:id="mainPane"
+            style="-fx-background-color: #f0f0f0;">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox spacing="0" style="-fx-background-color: #5E92C4; -fx-min-width: 220;">
+
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20; -fx-background-color: #4A7BA7;">
+                <Label text="Control de Presencia"
+                       style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label text="Panel Administrador"
+                       style="-fx-text-fill: white; -fx-font-size: 11px;"/>
+            </VBox>
+
+            <!-- Info Usuario -->
+            <VBox spacing="3" style="-fx-padding: 15; -fx-background-color: #436A92;">
+                <Label fx:id="lblUsuario" text="Administrador"
+                       style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblRol" text="Admin"
+                       style="-fx-text-fill: white; -fx-font-size: 11px;"/>
+            </VBox>
+
+            <!-- Menú -->
+            <VBox spacing="5" style="-fx-padding: 15;">
+                <Label text="MENÚ" style="-fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 5 0;"/>
+
+                <Button fx:id="btnDashboard" text="Dashboard" onAction="#handleDashboard"
+                        styleClass="menu-button" prefWidth="190" style="-fx-font-size: 13px;"/>
+
+                <Button fx:id="btnGestion" text="Gestión de Fichajes" onAction="#handleGestion"
+                        styleClass="menu-button" prefWidth="190" style="-fx-font-size: 13px;"/>
+
+                <Button fx:id="btnEstadisticas" text="Estadísticas" onAction="#handleEstadisticas"
+                        styleClass="menu-button" prefWidth="190" style="-fx-font-size: 13px;"/>
+
+                <Button fx:id="btnTrabajadores" text="Trabajadores" onAction="#handleTrabajadores"
+                        styleClass="menu-button" prefWidth="190" style="-fx-font-size: 13px;"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Cerrar Sesión -->
+            <VBox style="-fx-padding: 15;">
+                <Button text="Cerrar Sesión" onAction="#handleCerrarSesion"
+                        styleClass="btn-danger" prefWidth="190" style="-fx-font-size: 12px;"/>
+            </VBox>
+
+            <!-- Footer -->
+            <VBox alignment="CENTER" style="-fx-padding: 10;">
+                <Label text="v2.0 © 2025" style="-fx-text-fill: white; -fx-font-size: 10px;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO -->
+    <center>
+        <VBox fx:id="contentArea" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+            <!-- Contenido dinámico -->
+        </VBox>
+    </center>
+</BorderPane>
+

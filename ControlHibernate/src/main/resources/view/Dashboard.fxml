@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.empresa.fichador.controller.DashboardController"
+            fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f1f5f9;">
+    <VBox spacing="25" style="-fx-background-color: #f1f5f9;">
+        <padding><Insets top="30" right="35" bottom="30" left="35"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="5">
+                <Label fx:id="lblBienvenida" text="¡Buenos días!" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label fx:id="lblFechaHoy" text="Hoy" style="-fx-font-size: 15px; -fx-text-fill: #64748b;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 Actualizar" styleClass="btn-primary" onAction="#handleActualizar"/>
+        </HBox>
+
+        <HBox spacing="20">
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="10">
+                <Label text="👥 Trabajadores" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblTotalTrabajadores" text="0" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #6366f1;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="10">
+                <Label text="📋 Fichajes Hoy" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblFichajesHoy" text="0" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #10b981;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="10">
+                <Label text="🏢 Presentes" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblPresentes" text="0" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #f59e0b;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="10">
+                <Label text="🎯 Puntualidad" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblTasaPuntualidad" text="0%" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #6366f1;"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="20">
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="⏰ Entrada Promedio" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblHoraPromedioEntrada" text="--:--" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #10b981;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="⏰ Salida Promedio" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblHoraPromedioSalida" text="--:--" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #ef4444;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="📊 Horas Totales" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblHorasTotalesHoy" text="0h" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #3b82f6;"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="8">
+                <Label text="⚠️ Incidencias" style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblIncidencias" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #f59e0b;"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="20">
+            <VBox HBox.hgrow="ALWAYS" styleClass="card" spacing="15">
+                <Label text="📈 Actividad Semanal" style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                <BarChart fx:id="chartActividad" prefHeight="250" legendVisible="false">
+                    <xAxis><CategoryAxis fx:id="xAxisActividad"/></xAxis>
+                    <yAxis><NumberAxis fx:id="yAxisActividad"/></yAxis>
+                </BarChart>
+            </VBox>
+            <VBox prefWidth="320" styleClass="card" spacing="15">
+                <Label text="🎯 Puntualidad Hoy" style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                <PieChart fx:id="chartPuntualidad" prefHeight="250" legendSide="BOTTOM" labelsVisible="false"/>
+            </VBox>
+        </HBox>
+
+        <VBox styleClass="card" spacing="15">
+            <Label text="🕐 Últimos Fichajes" style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+            <VBox fx:id="vboxUltimosFichajes" spacing="10"/>
+        </VBox>
+
+        <VBox styleClass="card" spacing="15">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="🏢 Trabajadores Presentes" style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblContadorPresentes" text="0" style="-fx-background-color: #d1fae5; -fx-padding: 8 16; -fx-background-radius: 20; -fx-text-fill: #059669; -fx-font-weight: 700;"/>
+            </HBox>
+            <FlowPane fx:id="flowPresentes" hgap="12" vgap="12"/>
+        </VBox>
+    </VBox>
+</ScrollPane>
+

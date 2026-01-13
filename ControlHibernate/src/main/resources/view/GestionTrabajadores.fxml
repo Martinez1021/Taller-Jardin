@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.empresa.fichador.controller.GestionTrabajadoresController"
+            fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f1f5f9;">
+    <VBox spacing="25" style="-fx-background-color: #f1f5f9;">
+        <padding><Insets top="30" right="35" bottom="30" left="35"/></padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="👥" style="-fx-font-size: 32px;"/>
+            <VBox spacing="3">
+                <Label text="Gestión de Trabajadores" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Administra los empleados" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="➕ Nuevo" onAction="#handleNuevo" styleClass="btn-primary"/>
+        </HBox>
+
+        <HBox spacing="15" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 16;">
+            <Label text="🔍" style="-fx-font-size: 18px;"/>
+            <TextField fx:id="txtBuscar" promptText="Buscar..." prefWidth="400"/>
+            <Button text="Buscar" onAction="#handleBuscar" styleClass="btn-primary"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblContador" text="0 trabajadores" style="-fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+        </HBox>
+
+        <VBox VBox.vgrow="ALWAYS" styleClass="card" spacing="15">
+            <TableView fx:id="tableTrabajadores" VBox.vgrow="ALWAYS" minHeight="350">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="colFoto" text="" prefWidth="50"/>
+                    <TableColumn fx:id="colNombre" text="👤 Nombre" prefWidth="150"/>
+                    <TableColumn fx:id="colApellidos" text="Apellidos" prefWidth="180"/>
+                    <TableColumn fx:id="colTarjeta" text="📇 Tarjeta" prefWidth="90"/>
+                    <TableColumn fx:id="colDepartamento" text="🏢 Depto." prefWidth="120"/>
+                    <TableColumn fx:id="colCargo" text="💼 Cargo" prefWidth="130"/>
+                    <TableColumn fx:id="colEmail" text="📧 Email" prefWidth="180"/>
+                    <TableColumn fx:id="colTelefono" text="📱 Tel." prefWidth="110"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="90"/>
+                    <TableColumn fx:id="colAcciones" text="⚙️" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="formulario" spacing="20" visible="false" managed="false" styleClass="card" style="-fx-padding: 25;">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label fx:id="lblFormularioTitulo" text="➕ Nuevo Trabajador" style="-fx-font-size: 20px; -fx-font-weight: 700;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="✖️ Cerrar" onAction="#handleCancelar" styleClass="btn-secondary"/>
+            </HBox>
+            <Separator/>
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Nombre *" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtNombre" promptText="Nombre"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Apellidos *" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtApellidos" promptText="Apellidos"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="DNI" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtDni" promptText="12345678A"/>
+                </VBox>
+            </HBox>
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Nº Tarjeta *" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtTarjeta" promptText="1001"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="PIN *" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtPin" promptText="1234"/>
+                </VBox>
+            </HBox>
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Email" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtEmail" promptText="correo@empresa.com"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Teléfono" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtTelefono" promptText="600000000"/>
+                </VBox>
+            </HBox>
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Departamento" style="-fx-font-weight: 600;"/>
+                    <ComboBox fx:id="comboDepartamento" promptText="Seleccionar" prefWidth="300"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Cargo" style="-fx-font-weight: 600;"/>
+                    <TextField fx:id="txtCargo" promptText="Desarrollador"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Horario" style="-fx-font-weight: 600;"/>
+                    <ComboBox fx:id="comboHorario" promptText="Seleccionar" prefWidth="250"/>
+                </VBox>
+            </HBox>
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Cancelar" onAction="#handleCancelar" styleClass="btn-secondary"/>
+                <Button text="💾 Guardar" onAction="#handleGuardar" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>
+
