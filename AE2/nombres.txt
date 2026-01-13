@@ -1,3 +1,0 @@
-Juan;García;Pérez;0;0;0
-María;López;Martínez;0;0;0
-Pedro;Sánchez;Rodríguez;0;0;0
