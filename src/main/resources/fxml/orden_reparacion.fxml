@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.taller.controller.OrdenReparacionController"
+            prefWidth="650" prefHeight="550">
+
+    <center>
+        <VBox spacing="18" style="-fx-padding: 25; -fx-background-color: #f5f5f5;">
+
+            <!-- Título -->
+            <VBox spacing="5" style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2); -fx-padding: 20; -fx-background-radius: 8;">
+                <Label text="📝 Nueva Orden de Reparacion"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="Crea una orden en MongoDB y opcionalmente en Odoo"
+                       style="-fx-font-size: 12px; -fx-text-fill: #f0f0f0;"/>
+            </VBox>
+
+            <!-- Información de la máquina -->
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 18; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dee2e6; -fx-border-width: 1;">
+
+                <Label text="🔧 Maquina Seleccionada"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+                <VBox spacing="5">
+                    <Label fx:id="lblMaquina" text="CTD-2024-001 - Cortacésped Honda HRX 476"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #495057;"/>
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="Cliente:" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                        <Label fx:id="lblCliente" text="Juan Pérez" style="-fx-font-size: 12px;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <!-- Formulario -->
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 18; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #dee2e6; -fx-border-width: 1;">
+
+                <Label text="📋 Detalles de la Reparacion"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+                <!-- Descripción del problema -->
+                <VBox spacing="6">
+                    <Label text="Descripcion del Problema *" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="txtDescripcionProblema"
+                              promptText="Describe el problema o la reparación necesaria..."
+                              prefRowCount="4" wrapText="true"/>
+                </VBox>
+
+                <!-- Técnico asignado -->
+                <VBox spacing="6">
+                    <Label text="Tecnico Asignado *" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtTecnicoAsignado" promptText="Nombre del tecnico"/>
+                </VBox>
+
+                <!-- Fecha estimada -->
+                <VBox spacing="6">
+                    <Label text="Fecha Estimada de Entrega *" style="-fx-font-weight: bold;"/>
+                    <DatePicker fx:id="dpFechaEstimada" promptText="dd/MM/yyyy" maxWidth="Infinity"/>
+                </VBox>
+
+                <!-- Presupuesto -->
+                <VBox spacing="6">
+                    <Label text="Presupuesto Estimado (€) *" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtPresupuesto" promptText="0.00"/>
+                </VBox>
+            </VBox>
+
+            <!-- Opciones de creación -->
+            <VBox spacing="10" style="-fx-background-color: #fff3cd; -fx-padding: 15; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ffc107; -fx-border-width: 2;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <CheckBox fx:id="chkCrearEnOdoo" text="Crear orden de reparación en Odoo"
+                              style="-fx-font-weight: bold;"/>
+                </HBox>
+                <Label text="💡 Si esta marcado, se creara automaticamente la orden en Odoo para facturacion"
+                       style="-fx-font-size: 11px; -fx-text-fill: #856404;"/>
+            </VBox>
+
+            <!-- Botones -->
+            <HBox spacing="15" alignment="CENTER">
+                <VBox.margin>
+                    <Insets top="5"/>
+                </VBox.margin>
+
+                <Button fx:id="btnCrearOrden" text="✅ Crear Orden de Reparacion"
+                        onAction="#crearOrdenReparacion" prefWidth="210"
+                        style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+
+                <Button text="❌ Cancelar" onAction="#cancelar" prefWidth="120"
+                        style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-cursor: hand;"/>
+            </HBox>
+
+            <Label text="* Campos obligatorios"
+                   style="-fx-font-size: 11px; -fx-text-fill: #6c757d; -fx-font-style: italic;"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+

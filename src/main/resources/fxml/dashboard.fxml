@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.DashboardController"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Dashboard" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Actualizar" onAction="#handleRefresh" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="20" styleClass="content-container">
+                <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+
+                <!-- Stats Cards Grid -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <VBox styleClass="stat-card stat-card-primary" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="MAQUINAS" styleClass="stat-label"/>
+                        <Label fx:id="lblTotalMaquinas" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-primary" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="CLIENTES" styleClass="stat-label"/>
+                        <Label fx:id="lblTotalClientes" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-primary" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Label text="INVENTARIO" styleClass="stat-label"/>
+                        <Label fx:id="lblTotalInventario" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <Label text="RESERVAS ACTIVAS" styleClass="stat-label"/>
+                        <Label fx:id="lblReservasActivas" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="INGRESOS MES" styleClass="stat-label"/>
+                        <Label fx:id="lblIngresosMes" text="0.00€" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-warning" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="FACTURAS PENDIENTES" styleClass="stat-label"/>
+                        <Label fx:id="lblFacturasPendientes" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card stat-card-danger" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="STOCK BAJO" styleClass="stat-label"/>
+                        <Label fx:id="lblStockBajo" text="0" styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label text="SALDO PENDIENTE" styleClass="stat-label"/>
+                        <Label fx:id="lblSaldoPendiente" text="0.00€" styleClass="stat-value"/>
+                    </VBox>
+                </GridPane>
+
+                <!-- Charts Row 1 -->
+                <GridPane hgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50" minWidth="300"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50" minWidth="300"/>
+                    </columnConstraints>
+
+                    <VBox styleClass="chart-container" GridPane.columnIndex="0">
+                        <Label text="Estado de Maquinas" styleClass="chart-title"/>
+                        <PieChart fx:id="chartEstadoMaquinas" legendVisible="true" prefHeight="250"/>
+                    </VBox>
+
+                    <VBox styleClass="chart-container" GridPane.columnIndex="1">
+                        <Label text="Estado de Reservas" styleClass="chart-title"/>
+                        <PieChart fx:id="chartEstadoReservas" legendVisible="true" prefHeight="250"/>
+                    </VBox>
+                </GridPane>
+
+                <!-- Charts Row 2 -->
+                <VBox styleClass="chart-container">
+                    <Label text="Reparaciones por Mes" styleClass="chart-title"/>
+                    <BarChart fx:id="chartReparacionesMes" prefHeight="280">
+                        <xAxis><CategoryAxis label="Mes"/></xAxis>
+                        <yAxis><NumberAxis label="Cantidad"/></yAxis>
+                    </BarChart>
+                </VBox>
+
+                <!-- Charts Row 3 -->
+                <VBox styleClass="chart-container">
+                    <Label text="Ingresos Mensuales" styleClass="chart-title"/>
+                    <LineChart fx:id="chartIngresosMensuales" prefHeight="280">
+                        <xAxis><CategoryAxis label="Mes"/></xAxis>
+                        <yAxis><NumberAxis label="Ingresos (€)"/></yAxis>
+                    </LineChart>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

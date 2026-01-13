@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.ClientesController"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Clientes" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnNuevo" text="Nuevo Cliente" onAction="#handleNuevo" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <SplitPane dividerPositions="0.65">
+            <!-- Left: Table -->
+            <VBox spacing="15" style="-fx-padding: 20;">
+                <!-- Search -->
+                <HBox spacing="10">
+                    <TextField fx:id="txtBuscar" promptText="Buscar por nombre, DNI o email..." HBox.hgrow="ALWAYS"/>
+                    <Button text="Buscar" onAction="#handleBuscar" styleClass="btn-secondary"/>
+                </HBox>
+
+                <!-- Table -->
+                <TableView fx:id="tableClientes" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                        <TableColumn fx:id="colDni" text="DNI" prefWidth="100"/>
+                        <TableColumn fx:id="colTelefono" text="Telefono" prefWidth="120"/>
+                        <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                        <TableColumn fx:id="colTipo" text="Tipo" prefWidth="100"/>
+                        <TableColumn fx:id="colSaldo" text="Saldo €" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Right: Form -->
+            <VBox spacing="15" styleClass="form-container">
+                <Label text="Detalles del Cliente" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <Label text="Nombre *" styleClass="form-label"/>
+                <TextField fx:id="txtNombre" promptText="Nombre completo"/>
+
+                <Label text="DNI / CIF" styleClass="form-label"/>
+                <TextField fx:id="txtDni" promptText="DNI o CIF"/>
+
+                <Label text="Telefono" styleClass="form-label"/>
+                <TextField fx:id="txtTelefono" promptText="+34 000 000 000"/>
+
+                <Label text="Email" styleClass="form-label"/>
+                <TextField fx:id="txtEmail" promptText="email@ejemplo.com"/>
+
+                <Label text="Direccion" styleClass="form-label"/>
+                <TextField fx:id="txtDireccion" promptText="Direccion completa"/>
+
+                <Label text="Tipo de Cliente" styleClass="form-label"/>
+                <ComboBox fx:id="cmbTipo" prefWidth="200"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <HBox spacing="10">
+                    <Button fx:id="btnGuardar" text="Guardar" onAction="#handleGuardar" styleClass="btn-primary" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnEliminar" text="Eliminar" onAction="#handleEliminar" styleClass="btn-danger" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+        </SplitPane>
+    </center>
+
+</BorderPane>

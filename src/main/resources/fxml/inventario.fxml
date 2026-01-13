@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.InventarioController"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Inventario" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnNuevo" text="Nuevo Item" onAction="#handleNuevo" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            
+            <!-- Stats Cards -->
+            <GridPane hgap="20">
+                <VBox styleClass="stat-card" GridPane.columnIndex="0">
+                    <Label text="Total Items" styleClass="stat-label"/>
+                    <Label fx:id="lblTotalItems" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="1">
+                    <Label text="Valor Total" styleClass="stat-label"/>
+                    <Label fx:id="lblValorTotal" text="0.00€" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card stat-card-danger" GridPane.columnIndex="2">
+                    <Label text="Stock Bajo" styleClass="stat-label"/>
+                    <Label fx:id="lblStockBajo" text="0" styleClass="stat-value"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Search and Filters -->
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" promptText="Buscar por codigo, nombre o descripcion..." HBox.hgrow="ALWAYS"/>
+                <Button text="Buscar" onAction="#handleBuscar" styleClass="btn-secondary"/>
+                <Button text="Stock Bajo" onAction="#handleVerBajoStock" styleClass="btn-warning"/>
+            </HBox>
+
+            <!-- Main Content -->
+            <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
+                <!-- Left: Table -->
+                <VBox spacing="10">
+                    <TableView fx:id="tableInventario" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCodigo" text="Codigo" prefWidth="100"/>
+                            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
+                            <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="100"/>
+                            <TableColumn fx:id="colStock" text="Stock" prefWidth="80"/>
+                            <TableColumn fx:id="colStockMin" text="Min." prefWidth="60"/>
+                            <TableColumn fx:id="colPrecioCompra" text="P. Compra" prefWidth="90"/>
+                            <TableColumn fx:id="colPrecioVenta" text="P. Venta" prefWidth="90"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Right: Form -->
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                    <VBox spacing="15" styleClass="form-container">
+                        <Label text="Detalles del Item" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                        <Label text="Codigo *" styleClass="form-label"/>
+                        <TextField fx:id="txtCodigo" promptText="Codigo unico"/>
+
+                        <Label text="Nombre *" styleClass="form-label"/>
+                        <TextField fx:id="txtNombre" promptText="Nombre del producto"/>
+
+                        <Label text="Categoria *" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbCategoria" prefWidth="200"/>
+
+                        <Label text="Descripcion" styleClass="form-label"/>
+                        <TextArea fx:id="txtDescripcion" promptText="Descripcion detallada" prefRowCount="3"/>
+
+                        <HBox spacing="10">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Stock Actual *" styleClass="form-label"/>
+                                <Spinner fx:id="spnStock"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Stock Minimo *" styleClass="form-label"/>
+                                <Spinner fx:id="spnStockMin"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="10">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Precio Compra €*" styleClass="form-label"/>
+                                <TextField fx:id="txtPrecioCompra" promptText="0.00"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Precio Venta €*" styleClass="form-label"/>
+                                <TextField fx:id="txtPrecioVenta" promptText="0.00"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Proveedor" styleClass="form-label"/>
+                        <TextField fx:id="txtProveedor" promptText="Nombre del proveedor"/>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <HBox spacing="10">
+                            <Button fx:id="btnGuardar" text="Guardar" onAction="#handleGuardar" styleClass="btn-primary" HBox.hgrow="ALWAYS"/>
+                            <Button text="Ajustar Stock" onAction="#handleAjustarStock" styleClass="btn-secondary" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <Button fx:id="btnEliminar" text="Eliminar" onAction="#handleEliminar" styleClass="btn-danger" maxWidth="Infinity"/>
+                    </VBox>
+                </ScrollPane>
+            </SplitPane>
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.taller.controller.GarantiasController"
+            prefWidth="750" prefHeight="600"
+            stylesheets="@../style.css">
+
+    <left>
+        <VBox spacing="10" style="-fx-padding: 20 0 20 20; -fx-background-color: #f8f9fa;">
+            <Label text="Lista de Equipos" styleClass="section-title"/>
+            <TextField fx:id="txtBuscarMaquina" promptText="Buscar por serie o modelo..." />
+            <TableView fx:id="tablaMaquinas" VBox.vgrow="ALWAYS" prefWidth="300">
+                <columns>
+                    <TableColumn fx:id="colModeloMaquina" text="Modelo" prefWidth="140"/>
+                    <TableColumn fx:id="colClienteMaquina" text="Cliente" prefWidth="100"/>
+                    <TableColumn fx:id="colEstadoGarantiaList" text="Estado" prefWidth="50"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-container">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+            <!-- Machine Info Card -->
+            <VBox styleClass="card">
+                <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 10 0; -fx-border-color: transparent transparent #e9ecef transparent;">
+                    <Label text="Informacion de la Maquina" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox fx:id="hboxEstadoGarantia" alignment="CENTER" style="-fx-background-radius: 20; -fx-padding: 5 15;">
+                        <Label fx:id="lblEstadoGarantia" text="EN GARANTIA" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+                    </HBox>
+                </HBox>
+
+                <GridPane hgap="25" vgap="15" style="-fx-padding: 15 0 0 0;">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints minWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label text="Numero de Serie" styleClass="text-muted" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="lblNumeroSerie" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Tipo" styleClass="text-muted" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                    <Label fx:id="lblTipo" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                    <Label text="Marca y Modelo" styleClass="text-muted" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="lblMarca"/>
+                        <Label fx:id="lblModelo" style="-fx-font-weight: bold;"/>
+                    </HBox>
+
+                    <Label text="Cliente" styleClass="text-muted" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                    <Label fx:id="lblCliente" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                    <Label text="Fecha Compra" styleClass="text-muted" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label fx:id="lblFechaCompra" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Garantia Hasta" styleClass="text-muted" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                    <Label fx:id="lblGarantiaHasta" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                </GridPane>
+
+                <Separator style="-fx-padding: 15 0;"/>
+
+                <VBox spacing="5">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Tiempo de Garantia Restante" styleClass="text-muted"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblDiasRestantes" style="-fx-font-weight: bold;"/>
+                    </HBox>
+                    <ProgressBar fx:id="progressGarantia" maxWidth="Infinity" prefHeight="10"/>
+                </VBox>
+            </VBox>
+
+            <!-- Repairs History Card -->
+            <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                <Label text="Historial de Reparaciones" styleClass="section-title"/>
+                <Label text="Las reparaciones con ID de Odoo están sincronizadas con facturación" styleClass="text-muted, text-small" style="-fx-padding: 0 0 10 0;"/>
+
+                <TableView fx:id="tablaReparaciones" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colFecha" text="Fecha" prefWidth="100"/>
+                        <TableColumn fx:id="colDescripcion" text="Descripcion" prefWidth="300"/>
+                        <TableColumn fx:id="colTecnico" text="Tecnico" prefWidth="120"/>
+                        <TableColumn fx:id="colCoste" text="Coste" prefWidth="80"/>
+                        <TableColumn fx:id="colOdooId" text="Odoo ID" prefWidth="80"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Close Button -->
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="Cerrar Ventana" onAction="#cerrar" styleClass="btn-secondary"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+

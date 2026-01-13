@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.ReportesController"
+            stylesheets="@../style.css">
+
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="PowerBI - Reportes" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                
+                <ComboBox fx:id="cmbReportes" prefWidth="300" onAction="#handleCambiarReporte" promptText="Seleccionar reporte..."/>
+                <Button text="↻" onAction="#handleRecargar" styleClass="btn-secondary"/>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Abrir PowerBI" onAction="#handleAbrirPowerBI" styleClass="btn-primary"/>
+                <Button text="Exportar CSV" onAction="#handleExportarDatos" styleClass="btn-secondary"/>
+                <Button text="Ver Guia" onAction="#handleVerGuia" styleClass="btn-info"/>
+            </HBox>
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <WebView fx:id="webView" visible="false"/>
+            
+            <VBox fx:id="panelAyuda" alignment="CENTER" spacing="30" style="-fx-background-color: white; -fx-padding: 50;">
+                <Label text="Integracion con Power BI" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Separator prefWidth="500"/>
+                <VBox spacing="15">
+                    <Label text="1. Haz click en Exportar CSV para generar archivos CSV" style="-fx-font-size: 14px;"/>
+                    <Label text="2. Importa los CSV en Power BI Desktop" style="-fx-font-size: 14px;"/>
+                    <Label text="3. Guarda tu archivo en C:\taller-jardin\Dashboard.pbix" style="-fx-font-size: 14px;"/>
+                    <Label text="4. Haz click en Abrir PowerBI para visualizar" style="-fx-font-size: 14px;"/>
+                </VBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #ecf0f1; -fx-padding: 10 20;">
+            <Label fx:id="lblEstado" text="Estado: Listo" style="-fx-font-size: 12px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblConexion" text="MongoDB conectado" style="-fx-font-size: 11px;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

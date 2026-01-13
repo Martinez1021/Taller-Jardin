@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.LoginController"
+            stylesheets="@../style.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #34495e);">
+
+    <center>
+        <VBox alignment="CENTER" spacing="25" maxWidth="450" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);">
+            <padding>
+                <Insets top="50" right="50" bottom="50" left="50"/>
+            </padding>
+
+            <!-- Logo / Título -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="🔧" style="-fx-font-size: 48px;"/>
+                <Label text="Taller de Jardin" styleClass="header-title" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label text="Sistema de Gestion" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            </VBox>
+
+            <Separator prefWidth="200"/>
+
+            <!-- Formulario de Login -->
+            <VBox spacing="20">
+                <!-- Usuario -->
+                <VBox spacing="8">
+                    <Label text="Usuario" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <TextField fx:id="txtUsuario" promptText="Ingrese su usuario"
+                               style="-fx-pref-height: 45px; -fx-font-size: 14px; -fx-border-color: #dfe6e9; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+                </VBox>
+
+                <!-- Contraseña -->
+                <VBox spacing="8">
+                    <Label text="Contraseña" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña"
+                                   style="-fx-pref-height: 45px; -fx-font-size: 14px; -fx-border-color: #dfe6e9; -fx-border-radius: 8; -fx-background-radius: 8;"
+                                   onAction="#handleLogin"/>
+                </VBox>
+
+                <!-- Mensaje de error -->
+                <Label fx:id="lblError" text="" style="-fx-text-fill: #e74c3c; -fx-font-size: 13px; -fx-font-weight: bold;" wrapText="true" managed="false" visible="false"/>
+
+                <!-- Botones -->
+                <VBox spacing="12">
+                    <Button fx:id="btnLogin" text="Iniciar Sesión" onAction="#handleLogin"
+                            styleClass="btn-primary"
+                            maxWidth="Infinity"
+                            style="-fx-pref-height: 50px; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+                    
+                    <Button fx:id="btnContinuarSinOdoo" text="Continuar sin Odoo" onAction="#handleContinuarSinOdoo"
+                            styleClass="btn-secondary"
+                            maxWidth="Infinity"
+                            style="-fx-pref-height: 40px; -fx-font-size: 13px; -fx-background-radius: 8;"/>
+                </VBox>
+            </VBox>
+
+            <!-- Info -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20 0 0 0;">
+                <Label text="Usuario por defecto: admin" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;"/>
+                <Label text="Contraseña por defecto: admin" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;"/>
+                <Separator prefWidth="200" style="-fx-padding: 10 0 5 0;"/>
+                <Label fx:id="lblEstado" text="Estado: Verificando conexiones..." style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>

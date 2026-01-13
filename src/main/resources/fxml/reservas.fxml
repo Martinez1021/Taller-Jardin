@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.ReservasController"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Reservas" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnNuevo" text="Nueva Reserva" onAction="#handleNuevo" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            
+            <!-- Stats Cards -->
+            <GridPane hgap="20">
+                <VBox styleClass="stat-card" GridPane.columnIndex="0">
+                    <Label text="Total Reservas" styleClass="stat-label"/>
+                    <Label fx:id="lblTotalReservas" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="1">
+                    <Label text="Reservas Activas" styleClass="stat-label"/>
+                    <Label fx:id="lblReservasActivas" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card stat-card-success" GridPane.columnIndex="2">
+                    <Label text="Ingresos Totales" styleClass="stat-label"/>
+                    <Label fx:id="lblIngresos" text="0.00€" styleClass="stat-value"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Main Content -->
+            <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
+                <!-- Left: Table -->
+                <VBox spacing="10">
+                    <HBox spacing="10">
+                        <ComboBox fx:id="cmbFiltroEstado" promptText="Filtrar por estado" prefWidth="150"/>
+                        <Button text="Filtrar" onAction="#handleFiltrarPorEstado" styleClass="btn-secondary"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <TableView fx:id="tableReservas" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCliente" text="Cliente" prefWidth="150"/>
+                            <TableColumn fx:id="colMaquina" text="Maquina" prefWidth="180"/>
+                            <TableColumn fx:id="colFechaInicio" text="Inicio" prefWidth="100"/>
+                            <TableColumn fx:id="colFechaFin" text="Fin" prefWidth="100"/>
+                            <TableColumn fx:id="colEstado" text="Estado" prefWidth="100"/>
+                            <TableColumn fx:id="colPrecio" text="Precio €" prefWidth="90"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Right: Form -->
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                    <VBox spacing="15" styleClass="form-container">
+                        <Label text="Detalles de la Reserva" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                        <Label text="Cliente *" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbCliente" prefWidth="300" maxWidth="Infinity"/>
+
+                        <Label text="Maquina *" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbMaquina" prefWidth="300" maxWidth="Infinity"/>
+
+                        <HBox spacing="10">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Fecha Inicio *" styleClass="form-label"/>
+                                <DatePicker fx:id="dpFechaInicio" prefWidth="150" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Fecha Fin *" styleClass="form-label"/>
+                                <DatePicker fx:id="dpFechaFin" prefWidth="150" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <Button text="✓ Verificar Disponibilidad" onAction="#handleVerificarDisponibilidad" 
+                                styleClass="btn-secondary" maxWidth="Infinity"/>
+
+                        <Label text="Estado *" styleClass="form-label"/>
+                        <ComboBox fx:id="cmbEstado" prefWidth="200"/>
+
+                        <Label text="Precio Alquiler €*" styleClass="form-label"/>
+                        <TextField fx:id="txtPrecio" promptText="0.00"/>
+
+                        <Label text="Observaciones" styleClass="form-label"/>
+                        <TextArea fx:id="txtObservaciones" promptText="Notas adicionales..." prefRowCount="4"/>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <HBox spacing="10">
+                            <Button fx:id="btnGuardar" text="Guardar" onAction="#handleGuardar" styleClass="btn-primary" HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnCancelar" text="Cancelar" onAction="#handleCancelar" styleClass="btn-danger" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+            </SplitPane>
+        </VBox>
+    </center>
+
+</BorderPane>

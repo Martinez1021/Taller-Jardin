@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.NavigationController"
+            stylesheets="@../style.css">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="250">
+            <!-- Logo/Header -->
+            <VBox styleClass="sidebar-header">
+                <Label text="Taller Jardin" styleClass="app-title"/>
+                <Label text="Sistema de Gestion" styleClass="app-subtitle"/>
+            </VBox>
+
+            <!-- Menu Buttons -->
+            <VBox spacing="8" VBox.vgrow="ALWAYS" style="-fx-padding: 20 15;">
+                <Button text="📊  Dashboard" onAction="#cargarDashboard" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="🚜  Maquinas" onAction="#cargarMaquinas" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="👥  Clientes" onAction="#cargarClientes" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="📦  Inventario" onAction="#cargarInventario" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="📅  Reservas" onAction="#cargarReservas" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="💰  Facturacion" onAction="#cargarFacturacion" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="🛡  Garantias" onAction="#cargarGarantias" styleClass="sidebar-button" maxWidth="Infinity"/>
+                
+                <Separator style="-fx-padding: 5 0;"/>
+                <Label text="REPORTES" style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 5 0 0 10;"/>
+                <Button text="📈  Analiticas" onAction="#cargarAnaliticas" styleClass="sidebar-button" maxWidth="Infinity"/>
+                <Button text="🌐  PowerBI Online" onAction="#cargarReportes" styleClass="sidebar-button" maxWidth="Infinity"/>
+                
+                <Region VBox.vgrow="ALWAYS"/>
+                
+                <Button text="🚪  Cerrar Aplicación" onAction="#handleSalir" maxWidth="Infinity" 
+                        style="-fx-background-color: rgba(231, 76, 60, 0.2); -fx-text-fill: #e74c3c; -fx-alignment: CENTER_LEFT; -fx-padding: 10 15; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold; -fx-border-color: #e74c3c; -fx-border-radius: 5;"/>
+                
+                <Separator style="-fx-padding: 5 0; -fx-background-color: transparent;"/>
+                
+                <!-- Status -->
+            <VBox styleClass="sidebar-footer" spacing="5">
+                <Label fx:id="lblEstadoOdoo" text="● Odoo: Verificando..." styleClass="status-text, status-warning"/>
+                <Label fx:id="lblEstadoMongo" text="● MongoDB: Verificando..." styleClass="status-text, status-warning"/>
+                <Separator/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                     <Label text="FPS:" styleClass="status-label-small"/>
+                     <Label fx:id="lblFps" text="60" styleClass="status-value-small"/>
+                     <Label text="LAT:" styleClass="status-label-small"/>
+                     <Label fx:id="lblLatencia" text="15ms" styleClass="status-value-small"/>
+                </HBox>
+            </VBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #f8f9fa;"/>
+    </center>
+
+</BorderPane>

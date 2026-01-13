@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.taller.controller.AnaliticasController"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="📊 Analíticas y Reportes" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="🔄 Actualizar" onAction="#handleActualizar" styleClass="btn-primary"/>
+                <Button text="📤 Exportar PDF" onAction="#handleExportarPDF" styleClass="btn-secondary"/>
+            </HBox>
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: #f8f9fa;">
+            <VBox spacing="20" style="-fx-padding: 20;">
+                
+                <!-- KPI Cards Row 1 -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <!-- Total Facturado -->
+                    <VBox GridPane.columnIndex="0" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #667eea; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Total Facturado" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblTotalFacturado" text="0.00 €" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label fx:id="lblFacturadoMes" text="Este mes" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Reservas Activas -->
+                    <VBox GridPane.columnIndex="1" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #f5576c; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Reservas Activas" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblReservasActivas" text="0" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label fx:id="lblReservasPendientes" text="0 pendientes" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Total Clientes -->
+                    <VBox GridPane.columnIndex="2" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #4facfe; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Total Clientes" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblTotalClientes" text="0" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label fx:id="lblClientesNuevos" text="0 este mes" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Stock Crítico -->
+                    <VBox GridPane.columnIndex="3" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #fa709a; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Stock Critico" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblStockCritico" text="0" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label text="Productos bajo minimo" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+                </GridPane>
+                
+                <!-- KPI Cards Row 2 -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <!-- Saldo Pendiente -->
+                    <VBox GridPane.columnIndex="0" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #30cfd0; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Saldo Pendiente" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblSaldoPendiente" text="0.00 €" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label text="Total por cobrar" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Total Productos -->
+                    <VBox GridPane.columnIndex="1" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #43e97b; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Total Productos" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblTotalProductos" text="0" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label text="En inventario" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Reparaciones Activas -->
+                    <VBox GridPane.columnIndex="2" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #ff6a88; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Reparaciones" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblReparacionesActivas" text="0" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label text="En proceso" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+
+                    <!-- Valor Inventario -->
+                    <VBox GridPane.columnIndex="3" styleClass="stat-card" prefHeight="130"
+                          style="-fx-background-color: #fcb69f; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);">
+                        <Label text="Valor Inventario" style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500;"/>
+                        <Label fx:id="lblValorInventario" text="0.00 €" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;">
+                            <padding><Insets top="10"/></padding>
+                        </Label>
+                        <Label text="Total en stock" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                            <padding><Insets top="5"/></padding>
+                        </Label>
+                    </VBox>
+                </GridPane>
+
+                <!-- Gráficos Row 1 -->
+                <HBox spacing="20" prefHeight="350">
+                    <!-- Facturación Mensual -->
+                    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="📈 Facturación Mensual" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                            <padding><Insets bottom="15"/></padding>
+                        </Label>
+                        <LineChart fx:id="chartFacturacion" VBox.vgrow="ALWAYS" legendVisible="false">
+                            <xAxis><CategoryAxis side="BOTTOM"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" label="Euros (€)"/></yAxis>
+                        </LineChart>
+                    </VBox>
+
+                    <!-- Estado de Reservas -->
+                    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="🥧 Reservas por Estado" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                            <padding><Insets bottom="15"/></padding>
+                        </Label>
+                        <PieChart fx:id="chartReservas" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Gráficos Row 2 -->
+                <HBox spacing="20" prefHeight="350">
+                    <!-- Top Clientes -->
+                    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="🏆 Top 10 Clientes" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                            <padding><Insets bottom="15"/></padding>
+                        </Label>
+                        <BarChart fx:id="chartTopClientes" VBox.vgrow="ALWAYS" legendVisible="false">
+                            <xAxis><CategoryAxis side="BOTTOM"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" label="Total Facturado (€)"/></yAxis>
+                        </BarChart>
+                    </VBox>
+
+                    <!-- Stock por Categoría -->
+                    <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="📊 Inventario por Categoría" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                            <padding><Insets bottom="15"/></padding>
+                        </Label>
+                        <BarChart fx:id="chartInventario" VBox.vgrow="ALWAYS" legendVisible="false" barGap="5" categoryGap="10">
+                            <xAxis><CategoryAxis side="BOTTOM"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" label="Cantidad"/></yAxis>
+                        </BarChart>
+                    </VBox>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #ecf0f1; -fx-padding: 10 20;">
+            <Label fx:id="lblUltimaActualizacion" text="Última actualización: --" style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Datos en tiempo real desde MongoDB" style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

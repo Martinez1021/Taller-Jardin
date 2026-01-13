@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.taller.controller.MainController"
+            prefWidth="1100" prefHeight="650"
+            stylesheets="@../style.css">
+
+    <!-- Header -->
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Gestion de Maquinas" styleClass="header-title">
+                    <font><Font size="24" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblEstadoOdoo" text="● Odoo Conectado" styleClass="status-badge, status-success"/>
+            </HBox>
+            <Label text="Sistema Integrado MongoDB + Odoo" style="-fx-text-fill: #e0e7ff; -fx-padding: 5 0 0 0;"/>
+        </VBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <SplitPane dividerPositions="0.65" VBox.vgrow="ALWAYS">
+
+            <!-- Left: Table -->
+            <VBox spacing="15" style="-fx-padding: 20;">
+                <!-- Search and Filters -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtBuscar" promptText="Número de serie o cliente" HBox.hgrow="ALWAYS" onAction="#buscarMaquina"/>
+                    <Button text="Buscar" onAction="#buscarMaquina" styleClass="btn-secondary"/>
+                    <ComboBox fx:id="cmbFiltroGarantia" promptText="Filtrar por Garantía" prefWidth="150"/>
+                </HBox>
+
+                <!-- Table -->
+                <TableView fx:id="tablaMaquinas" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colNumeroSerie" text="Nº Serie" prefWidth="120"/>
+                        <TableColumn fx:id="colTipo" text="Tipo" prefWidth="100"/>
+                        <TableColumn fx:id="colMarca" text="Marca" prefWidth="100"/>
+                        <TableColumn fx:id="colModelo" text="Modelo" prefWidth="100"/>
+                        <TableColumn fx:id="colCliente" text="Cliente" prefWidth="150"/>
+                        <TableColumn fx:id="colGarantia" text="Garantía" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <!-- Actions -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Recargar" onAction="#recargarDatos" styleClass="btn-success"/>
+                    <Button text="Sincronizar Odoo" onAction="#sincronizarConOdoo" styleClass="btn-primary"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnNuevaReparacion" text="Nueva Reparación" onAction="#nuevaReparacion" disable="true" styleClass="btn-warning"/>
+                    <Button fx:id="btnVerGarantias" text="Ver Garantías" onAction="#verGarantias" disable="true" styleClass="btn-info"/>
+                    <Button text="Eliminar" onAction="#eliminarMaquina" styleClass="btn-danger"/>
+                </HBox>
+            </VBox>
+
+            <!-- Right: Form -->
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox spacing="15" styleClass="form-container">
+                    <Label text="Datos de la Maquina" styleClass="section-title"/>
+
+                    <Label text="Número de Serie *" styleClass="form-label"/>
+                    <TextField fx:id="txtNumeroSerie" promptText="CTD-2024-001"/>
+
+                    <Label text="Tipo *" styleClass="form-label"/>
+                    <ComboBox fx:id="cmbTipo" promptText="Seleccione un tipo" maxWidth="Infinity"/>
+
+                    <Label text="Marca *" styleClass="form-label"/>
+                    <TextField fx:id="txtMarca" promptText="Honda, Stihl, etc."/>
+
+                    <Label text="Modelo *" styleClass="form-label"/>
+                    <TextField fx:id="txtModelo" promptText="HRX 476"/>
+
+                    <Separator/>
+
+                    <Label text="Datos del Cliente" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+
+                    <Label text="Nombre del Cliente *" styleClass="form-label"/>
+                    <TextField fx:id="txtCliente" promptText="Juan Pérez"/>
+
+                    <Label text="Teléfono" styleClass="form-label"/>
+                    <TextField fx:id="txtTelefono" promptText="600123456"/>
+
+                    <Label text="Email" styleClass="form-label"/>
+                    <TextField fx:id="txtEmail" promptText="cliente@email.com"/>
+
+                    <Separator/>
+
+                    <Label text="Fechas y Garantía" style="-fx-font-weight: bold; -fx-text-fill: #495057;"/>
+
+                    <HBox spacing="10">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="F. Compra *" styleClass="form-label"/>
+                            <DatePicker fx:id="dpFechaCompra" maxWidth="Infinity"/>
+                        </VBox>
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Garantía Hasta *" styleClass="form-label"/>
+                            <DatePicker fx:id="dpGarantiaHasta" maxWidth="Infinity"/>
+                        </VBox>
+                    </HBox>
+
+                    <Separator/>
+
+                    <HBox spacing="10">
+                        <Button fx:id="btnAgregar" text="Agregar" onAction="#agregarMaquina" styleClass="btn-success" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="btnActualizar" text="Actualizar" onAction="#actualizarMaquina" styleClass="btn-warning" disable="true" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <Button text="Limpiar Formulario" onAction="#limpiarFormulario" styleClass="btn-secondary" maxWidth="Infinity"/>
+                </VBox>
+            </ScrollPane>
+
+        </SplitPane>
+    </center>
+
+</BorderPane>
+
